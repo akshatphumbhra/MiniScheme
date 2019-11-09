@@ -11,6 +11,6 @@ def parse(inputList):
     elif inputList[0] == "if":
         return newIfExp(inputList)
     elif type(inputList) is list:
-        pass
+        printError("parse: Invalid syntax", inputList)
     else:
         return newAppExp(parse(inputList[0]), map(parse, inputList[1:]))
