@@ -15,7 +15,6 @@ def parse(inputList):
     elif inputList[0] == "let":
         return newLetExp(inputList)
     elif inputList[0] == "if":
-        
         return newIfExp(inputList)
     elif type(inputList) is not list:
         printError("parse: Invalid syntax", inputList)
@@ -54,11 +53,11 @@ def isIfExp(inputList):
     return False
 
 def ifCondition(inputList):
-    return inputList[1]
+    return inputList[1][0]
 
 def ifTrueExp(inputList):
-    return inputList[2]
+    return inputList[1][1]
 
 def ifFalseExp(inputList):
-    return inputList[3]
+    return inputList[1][2]
 #-----------------------------------------------------

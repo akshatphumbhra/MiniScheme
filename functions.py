@@ -12,3 +12,6 @@ def isSymbol(inputList):
 
 def car(inputList):
     return inputList[0]
+
+def cadr(inputList):
+    return inputList[1]

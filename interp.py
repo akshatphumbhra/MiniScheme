@@ -59,7 +59,7 @@ def evalExp(tree, env):
         if evalExp(ifCondition(tree),env):
             return evalExp(ifTrueExp(tree), env)
         else:
-            return evalExp(ifFalseExp(tree, env))
+            return evalExp(ifFalseExp(tree), env)
     elif isAppExp(tree):
         return applyProc(evalExp(appProc(tree), env), list(map(lambda t: evalExp(t,env), appArgs(tree))))
     else:
