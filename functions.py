@@ -1,12 +1,12 @@
 
 def isNumber(inputList):
-    digits = [1,2,3,4,5,6,7,8,9,0]
-    if len(inputList) == 1 and inputList[0] in digits:
+    #print(inputList)
+    if isinstance(inputList, int) or (len(inputList)==1 and isinstance(inputList[0], int)):
         return True
     return False
 
 def isSymbol(inputList):
-    if len(inputList) == 1 and not isNumber(inputList):
+    if isinstance(inputList,str) or (len(inputList)==1 and isinstance(inputList[0], str)):
         return True
     return False
 

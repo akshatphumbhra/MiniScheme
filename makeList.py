@@ -1,67 +1,41 @@
-from pythonds.basic import Stack
-from pythonds.trees import BinaryTree
 
-def buildParseTree(fpexp):
-    fplist = fpexp.split()
-    pStack = Stack()
-    eTree = BinaryTree('')
-    pStack.push(eTree)
-    currentTree = eTree
+def parseIntoList(inputVal):
+    answer = []
+    i=0
+    while i <= (len(inputVal)):
+        if inputVal[i] == ")":
+            return answer, i+1
 
-    def postorder(tree):
-        if tree != None:
-            postorder(tree.getLeftChild())
-            postorder(tree.getRightChild())
-            print(tree.getRootVal())
+        elif inputVal[i] == "(":
+            retVal, index = parseIntoList(inputVal[i+1:])
+            i = i +index
+            #print(i)
+            answer.append(retVal)
+        else:
+            answer.append(inputVal[i])
+        i+=1
+# ( if ( < 4 6 ) ( + 3 4 ) ( * 4 5 ) )
+# split == ['(', 'if', '(', '<', '4' , '6', ')','(', '*', '4' , '5' , ')', ')']
 
-    def preorder(self):
-        print(self.key)
-        if self.leftChild:
-            self.leftChild.preorder()
-        if self.rightChild:
-            self.rightChild.preorder()
-
-    for i in fplist:
-        if i == '(':
-            currentTree.insertLeft('')
-            pStack.push(currentTree)
-            currentTree = currentTree.getLeftChild()
-
-        elif i in ['+', '-', '*', '/']:
-            currentTree.setRootVal(i)
-            currentTree.insertRight('')
-            pStack.push(currentTree)
-            currentTree = currentTree.getRightChild()
-
-        elif i == ')':
-            currentTree = pStack.pop()
-
-        elif i not in ['+', '-', '*', '/', ')']:
-            try:
-                currentTree.setRootVal(int(i))
-                parent = pStack.pop()
-                currentTree = parent
-
-            except ValueError:
-                raise ValueError("token '{}' is not a valid integer".format(i))
-
-    return eTree
-
-pt = buildParseTree("( ( 10 + 5 ) * 3 )")
-pt.preorder()  #defined and explained in the next section
-pStack = Stack()
-def func(takein):
-    openParen = False
-    value = ""
-    result = list()
-    for i in range(len(takein)):
-        if takein[i] == '(' and not openParen:
-            openParen = True
-            
-def parseIntoList():
-    takein = ""
-    while takein != "exit":
-        takein = input("MS> ")
-        answer= buildParseTree(takein)
-        answer.postorder()
-parseIntoList()
+def convertToList(command):
+    if '(' not in command:
+        if command.isdigit():
+            return [int(command)]
+        else:
+        # if command.isdigit():
+        #     return int(command)
+            return [command]
+    value=""
+    for letter in command:
+        if letter == "(":
+            value = value + letter + " "
+        elif letter == ")":
+            value = value + " " +")"
+        else:
+            value+= letter
+    commandList = value.split()
+    answer, i = parseIntoList(commandList[1:])
+    # for i in range(len(answer)):
+    #     if answer[i].isdigit():
+    #         answer[i] = int(answer[i])
+    return answer

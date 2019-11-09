@@ -1,5 +1,5 @@
 import sys
-
+from functions import car
 #Datatype definitions and environment variables
 
 def printError(message, var=""):
@@ -79,7 +79,7 @@ def newVarRef(inputList):
 
 def isVarRef(inputList):
     if type(inputList) is list:
-        return inputlist[0] == "var-ref"
+        return inputList[0] == "var-ref"
     return False
 
 def varRefSymbol(inputList):
@@ -87,7 +87,7 @@ def varRefSymbol(inputList):
 #----------------------------------------------
 
 #Data types for primitive operators-------------
-primitiveOperators= ['+', '-', '*' , '/' , 'add1' , 'sub1' ,'minus' , 'first' , 'rest' , 'build' , 'list' , 'empty'? , 'equals?', 'lt?', 'gt?', 'leq?', 'geq?']
+primitiveOperators= ['+', '-', '*' , '/' , 'add1' , 'sub1' ,'minus' , 'first' , 'rest' , 'build' , 'list' , 'empty?' , 'equals?', 'lt?', 'gt?', 'leq?', 'geq?']
 
 def newPrimProc(inputList):
     return ["prim-proc", inputList]
@@ -97,7 +97,7 @@ def primProcSymbol(inputList):
 
 def isPrimProc(inputList):
     if type(inputList) is list:
-        return inputlist[0] == "prim-proc"
+        return inputList[0] == "prim-proc"
     return False
 
 def newAppExp(proc, args):
@@ -105,7 +105,7 @@ def newAppExp(proc, args):
 
 def isAppExp(inputList):
     if type(inputList) is list:
-        return inputlist[0] == "app-exp"
+        return inputList[0] == "app-exp"
     return False
 
 def appProc(inputList):
@@ -116,46 +116,6 @@ def appArgs(inputList):
 
 #----------------------------------------
 
-#Data types for if, let ---------------------------
-def newLetExp(inputList):
-    result = list(map(car, inputList[1]))
-    result2 = list(map(parse,list(map(cadr, inputList[1]))))
-    result3 = parse(inputList[2])
-    answer = ["let-exp", result, result2, result3]
-    return answer
-
-def isLetExp(inputList):
-    if type(inputList) is list:
-        return inputlist[0] == "let-exp"
-    return False
-
-def letSymbols(inputList):
-    return inputList[1]
-
-def letValues(inputList):
-    return inputList[2]
-
-def letBody(inputList):
-    return inputList[3]
-
-def newIfExp(inputList):
-    answer = ["if-exp", list(map(parse, inputList[1:]))]
-    return answer
-
-def isIfExp(inputList):
-    if type(inputList) is list:
-        return inputList[0] == "if-exp"
-    return False
-
-def ifCondition(inputList):
-    return inputList[1]
-
-def ifTrueExp(inputList):
-    return inputList[2]
-
-def ifFalseExp(inputList):
-    return inputList[3]
-#-----------------------------------------------------
 
 #--------Initial environment--------------------------
 
