@@ -14,11 +14,14 @@ def applyPrimitiveOp(op, argValues):
         return argValues[0] + 1
     elif op == "sub1":
         return argValues[0] - 1
+    elif op == "minus":
+        return argValues[0] - 2*argValues[0]
     elif op == "list":
         return argValues
     elif op == "build":
         if type(argValues[1]) is list:
-            return argValues[1].insert(0, argValues[0])
+             argValues[1].insert(0, argValues[0])
+             return argValues[1]
         else:
             return [argValues[0], argValues[1]]
     elif op == "first":

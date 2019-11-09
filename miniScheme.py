@@ -11,7 +11,7 @@ def main():
             done = True
             break
         commandList = convertToList(command)
-        print(commandList)
+        #print(commandList)
         print(evalExp(parse(commandList), initEnv))
 
 if __name__ == "__main__":
