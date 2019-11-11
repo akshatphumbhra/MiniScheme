@@ -22,8 +22,6 @@ def convertToList(command):
         if command.isdigit():
             return [int(command)]
         else:
-        # if command.isdigit():
-        #     return int(command)
             return [command]
     value=""
     for letter in command:
@@ -35,7 +33,4 @@ def convertToList(command):
             value+= letter
     commandList = value.split()
     answer, i = parseIntoList(commandList[1:])
-    # for i in range(len(answer)):
-    #     if answer[i].isdigit():
-    #         answer[i] = int(answer[i])
     return answer
