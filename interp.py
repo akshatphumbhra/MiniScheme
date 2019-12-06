@@ -49,7 +49,7 @@ def applyProc(p, argValues):
         printError("applyProc: Bad Procedure", p)
 
 def evalExp(tree, env):
-    if isLitExp(tree):
+    if isLitExp(tree): 
         return litExpNum(tree)
     elif isVarRef(tree):
         return lookup(env, varRefSymbol(tree))
@@ -62,5 +62,7 @@ def evalExp(tree, env):
             return evalExp(ifFalseExp(tree), env)
     elif isAppExp(tree):
         return applyProc(evalExp(appProc(tree), env), list(map(lambda t: evalExp(t,env), appArgs(tree))))
+    elif isLambdaExp(tree):
+        return (newClosure([lambdaParams(tree), lambdaBody(tree), env]))
     else:
         printError("evalExp: Invalid tree", tree)
