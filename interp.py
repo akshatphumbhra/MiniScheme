@@ -45,6 +45,8 @@ def applyProc(p, argValues):
     #print(p, argValues)
     if isPrimProc(p):
         return applyPrimitiveOp(primProcSymbol(p), argValues)
+    elif isClosure(p):
+        return evalExp(closureBody(p), extendedEnv((closureParams (p)), list(argValues), (closureEnv (p)))) 
     else:
         printError("applyProc: Bad Procedure", p)
 
@@ -63,6 +65,6 @@ def evalExp(tree, env):
     elif isAppExp(tree):
         return applyProc(evalExp(appProc(tree), env), list(map(lambda t: evalExp(t,env), appArgs(tree))))
     elif isLambdaExp(tree):
-        return (newClosure([lambdaParams(tree), lambdaBody(tree), env]))
+        return newClosure(lambdaParams(tree), lambdaBody(tree), env)
     else:
         printError("evalExp: Invalid tree", tree)

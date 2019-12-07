@@ -24,8 +24,8 @@ def parse(inputList):
         return newAppExp(parse(inputList[0]), list(map(parse, inputList[1:])))
     
 #data types for closure-----------------------------
-def newClosure(inputList):
-    answer = ["closure", inputList[0], inputList[1], inputList[2]]
+def newClosure(params, body, env):
+    answer = ["closure", params, body, env]
     return answer
 
 def closureParams(inputList):
@@ -34,12 +34,12 @@ def closureParams(inputList):
 def closureBody(inputList):
     return (inputList[2])
 
-def ClosureEnv(inputList):
+def closureEnv(inputList):
     return (inputList[3])
 
 def isClosure(inputList):
     if type(inputList) is list:
-        return inputList == "closure"
+        return inputList[0] == "closure"
     return False
 
 #data types for Lambda ----------------------------
